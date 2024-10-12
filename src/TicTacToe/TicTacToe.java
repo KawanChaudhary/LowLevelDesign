@@ -41,9 +41,13 @@ public class TicTacToe {
                 }
 
                 // Convert the string to integers
+
                 inputRow = Integer.parseInt(values[0]);
                 inputColumn = Integer.parseInt(values[1]);
-
+                if(inputRow < 0 || inputRow > 2 || inputColumn < 0 || inputColumn > 2){
+                    System.out.println("Range should be [0 - 2].");
+                    continue;
+                }
                 // If both are valid, break the loop
                 break;
 
