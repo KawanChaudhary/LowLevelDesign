@@ -1,1 +1,1 @@
-Find The description here: https://workat.tech/machine-coding/practice/design-parking-lot-qm6hwq4wkhp8
+**Find The description here**: [Click here to read the full description!](https://workat.tech/machine-coding/practice/design-parking-lot-qm6hwq4wkhp8)
