@@ -54,8 +54,8 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "Ticket {" +
-                "entryTime: " + formatDateTime(entryTime) +
+        return "Ticket {id: " + id +
+                ", entryTime: " + formatDateTime(entryTime) +
                 ", parkingSpot: " + parkingSpot.getSpot() +
                 ", vehicle: " + vehicle.getLicensePlate() +
                 '}';

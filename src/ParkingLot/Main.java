@@ -2,7 +2,6 @@ package ParkingLot;
 
 import ParkingLot.Vehicle.Car;
 import ParkingLot.Vehicle.Vehicle;
-import TicTacToe.TicTacToe;
 
 public class Main {
     public static void main(String[] args){
@@ -16,8 +15,11 @@ public class Main {
         parkingLot.parkVehicle(car);
 
 //        Add another level
-        parkingLot.addLevel();
+//        parkingLot.addLevel();
         Vehicle car1 = new Car("ABC-1234");
         parkingLot.parkVehicle(car1);
+
+//        UnPark car1
+        parkingLot.unParkVehicle(1);
     }
 }

@@ -26,7 +26,7 @@ public class ParkingLot {
 
     public static synchronized ParkingLot getInstance(){
         if(instance == null){
-            return new ParkingLot();
+            instance = new ParkingLot();
         }
         return instance;
     }
@@ -52,7 +52,7 @@ public class ParkingLot {
         Ticket ticket = null;
         for(Ticket t: tickets) {
             if(t.getId() == id){
-                ticket = t.getVehicle() == null ? t : null;
+                ticket = t.getVehicle() != null ? t : null;
                 break;
             }
         }
@@ -60,8 +60,7 @@ public class ParkingLot {
             System.out.println("Invalid ticket id.");
         }
         else{
-            int finalPrice = exitGate.unParkVehicle(ticket);
-            System.out.println("Please proceed with the payment: " + finalPrice);
+             exitGate.unParkVehicle(ticket);
         }
     }
 

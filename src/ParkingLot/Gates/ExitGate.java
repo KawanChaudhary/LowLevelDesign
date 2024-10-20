@@ -16,13 +16,16 @@ public class ExitGate {
         costComputation = new CostComputation();
     }
 
-    public int unParkVehicle(Ticket ticket){
+    public void unParkVehicle(Ticket ticket){
         levelManager.unParkVehicle(ticket);
         closeTicket(ticket);
-        return costComputation.calculateParkingCost(ticket);
+        int finalPrice = costComputation.calculateParkingCost(ticket);
+        System.out.println("Please proceed with the payment: " + finalPrice);
     }
 
     public void closeTicket(@NotNull Ticket ticket){
-        ticket.setExitTime(LocalDateTime.now());
+        // Add 2 hours and 20 minutes to the entry time to set the exit time
+        LocalDateTime exitTime = LocalDateTime.now().plusHours(2).plusMinutes(20);
+        ticket.setExitTime(exitTime);
     }
 }

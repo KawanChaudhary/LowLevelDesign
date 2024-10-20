@@ -83,11 +83,9 @@ public class LevelManager {
         int floor = getFloorNumber(ticket.getParkingSpot().getSpot());
         Level lvl = getFloorByIndex(floor);
         List<ParkingSpot> parkingSpots = lvl.getParkingSlotsEqualsVehicleType(ticket.getVehicle().getType());
-        for(ParkingSpot parkingSpot: parkingSpots){
-            if(!parkingSpot.isAvailable() && parkingSpot.getSpot().equals(ticket.getParkingSpot().getSpot())){
-                parkingSpot.unParkVehicle();
-            }
-        }
+
+        ParkingManager parkingManager = parkingManagerFactory.getParkingManager(ticket.getVehicle().getType(), parkingSpots);
+        parkingManager.unParkVehicle(ticket.getVehicle());
     }
 
 }
