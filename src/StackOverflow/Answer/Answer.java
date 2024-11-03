@@ -34,4 +34,13 @@ public class Answer extends Entity {
         return comments;
     }
 
+    public Comment getCommentById(Long id) {
+        for (Comment comment : comments) {
+            if (comment.getId().equals(id)) {
+                return comment;
+            }
+        }
+        return null;
+    }
+
 }

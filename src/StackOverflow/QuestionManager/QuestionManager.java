@@ -157,4 +157,43 @@ public class QuestionManager {
         return photos;
     }
 
+    public void upVoteQuestion(Long questionId, @NotNull Member askingMember){
+        Question q = getQuestion(questionId);
+        q.upVote(askingMember.getAccount().getId());
+    }
+    // this can be simplified by making an answer manager:
+    public void upVoteAnswer(Long questionId, Long answerId, @NotNull Member askingMember){
+        Question q = getQuestion(questionId);
+        Answer ans = q.getAnswerById(answerId);
+        ans.upVote(askingMember.getAccount().getId());
+    }
+
+    // this can be simplified by making a comment manager:
+    public void upVoteComment(Long questionId, Long answerId, Long commentId, @NotNull Member askingMember){
+        Question q = getQuestion(questionId);
+        Answer ans = q.getAnswerById(answerId);
+        Comment comment = ans.getCommentById(commentId);
+        comment.upVote(askingMember.getAccount().getId());
+    }
+
+    public void downVoteQuestion(Long questionId, @NotNull Member askingMember) {
+        Question q = getQuestion(questionId);
+        q.downVote(askingMember.getAccount().getId());
+    }
+
+    // This can be simplified by making an answer manager:
+    public void downVoteAnswer(Long questionId, Long answerId, @NotNull Member askingMember) {
+        Question q = getQuestion(questionId);
+        Answer ans = q.getAnswerById(answerId);
+        ans.downVote(askingMember.getAccount().getId());
+    }
+
+    // This can be simplified by making a comment manager:
+    public void downVoteComment(Long questionId, Long answerId, Long commentId, @NotNull Member askingMember) {
+        Question q = getQuestion(questionId);
+        Answer ans = q.getAnswerById(answerId);
+        Comment comment = ans.getCommentById(commentId);
+        comment.downVote(askingMember.getAccount().getId());
+    }
+
 }
