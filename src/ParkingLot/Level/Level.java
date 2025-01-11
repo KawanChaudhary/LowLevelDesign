@@ -2,7 +2,6 @@ package ParkingLot.Level;
 
 import ParkingLot.ParkingSpot.ParkingSpot;
 import ParkingLot.Vehicle.VehicleType;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,7 @@ public class Level {
     private final int floor;
     private final List<ParkingSpot> parkingSpots;
 
-    public Level(int floor, @NotNull List<LevelDetails> levelDetails){
+    public Level(int floor, List<LevelDetails> levelDetails){
         this.parkingSpots = new ArrayList<>();
         this.floor = floor;
         for(LevelDetails ld: levelDetails){

@@ -6,8 +6,6 @@ import StackOverflow.Comment.Comment;
 import StackOverflow.Input.Input;
 import StackOverflow.Photo.Photo;
 import StackOverflow.Status.EntityStatus;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -45,8 +43,7 @@ public class QuestionManager {
         System.out.println("Question created successfully!");
     }
 
-    @Contract("_ -> param1")
-    private Set<String> getTagsInput(@NotNull Set<String> tags){
+    private Set<String> getTagsInput(Set<String> tags){
         while (tags.size() < 5) {
             String tag = getInput.getValidatedInput(
                     "Enter a tag (or type 'done' to finish): ",
@@ -80,7 +77,7 @@ public class QuestionManager {
         return new ArrayList<>(intersection);
     }
 
-    private List<Question> getTitleMatchQuestions(@NotNull String searchTitle) {
+    private List<Question> getTitleMatchQuestions(String searchTitle) {
         Set<String> searchWords = Set.of(searchTitle.toLowerCase().split("\\s+"));
 
         return questions.values().parallelStream()
@@ -101,7 +98,7 @@ public class QuestionManager {
                 .collect(Collectors.toList());
     }
 
-    private double calculateTitleMatchPercentage(@NotNull String title, @NotNull Set<String> searchWords) {
+    private double calculateTitleMatchPercentage(String title, Set<String> searchWords) {
         Set<String> titleWords = Set.of(title.toLowerCase().split("\\s+"));
 
         long matchCount = titleWords.stream().filter(searchWords::contains).count();
@@ -110,7 +107,7 @@ public class QuestionManager {
         return (matchCount * 100.0) / searchWords.size();
     }
 
-    private long getTagMatchCount(@NotNull Set<String> questionTags, @NotNull Set<String> requiredTags) {
+    private long getTagMatchCount(Set<String> questionTags, Set<String> requiredTags) {
         return questionTags.stream().filter(requiredTags::contains).count();
     }
 
@@ -147,7 +144,7 @@ public class QuestionManager {
         ans.addComment(newComment);
     }
 
-    private @NotNull List<Photo> getPhotos(Member askingMember){
+    private List<Photo> getPhotos(Member askingMember){
         List<Photo> photos = new ArrayList<>();
 
         // Added photos
@@ -157,39 +154,39 @@ public class QuestionManager {
         return photos;
     }
 
-    public void upVoteQuestion(Long questionId, @NotNull Member askingMember){
+    public void upVoteQuestion(Long questionId, Member askingMember){
         Question q = getQuestion(questionId);
         q.upVote(askingMember.getAccount().getId());
     }
     // this can be simplified by making an answer manager:
-    public void upVoteAnswer(Long questionId, Long answerId, @NotNull Member askingMember){
+    public void upVoteAnswer(Long questionId, Long answerId, Member askingMember){
         Question q = getQuestion(questionId);
         Answer ans = q.getAnswerById(answerId);
         ans.upVote(askingMember.getAccount().getId());
     }
 
     // this can be simplified by making a comment manager:
-    public void upVoteComment(Long questionId, Long answerId, Long commentId, @NotNull Member askingMember){
+    public void upVoteComment(Long questionId, Long answerId, Long commentId, Member askingMember){
         Question q = getQuestion(questionId);
         Answer ans = q.getAnswerById(answerId);
         Comment comment = ans.getCommentById(commentId);
         comment.upVote(askingMember.getAccount().getId());
     }
 
-    public void downVoteQuestion(Long questionId, @NotNull Member askingMember) {
+    public void downVoteQuestion(Long questionId, Member askingMember) {
         Question q = getQuestion(questionId);
         q.downVote(askingMember.getAccount().getId());
     }
 
     // This can be simplified by making an answer manager:
-    public void downVoteAnswer(Long questionId, Long answerId, @NotNull Member askingMember) {
+    public void downVoteAnswer(Long questionId, Long answerId, Member askingMember) {
         Question q = getQuestion(questionId);
         Answer ans = q.getAnswerById(answerId);
         ans.downVote(askingMember.getAccount().getId());
     }
 
     // This can be simplified by making a comment manager:
-    public void downVoteComment(Long questionId, Long answerId, Long commentId, @NotNull Member askingMember) {
+    public void downVoteComment(Long questionId, Long answerId, Long commentId, Member askingMember) {
         Question q = getQuestion(questionId);
         Answer ans = q.getAnswerById(answerId);
         Comment comment = ans.getCommentById(commentId);

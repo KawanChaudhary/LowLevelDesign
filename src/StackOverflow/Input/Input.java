@@ -1,7 +1,5 @@
 package StackOverflow.Input;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Scanner;
 import java.util.function.Predicate;
 
@@ -19,7 +17,7 @@ public class Input {
      * @param errorMessage Error message if validation fails
      * @return Validated input as a String
      */
-    public @NotNull String getValidatedInput(String prompt, @NotNull Predicate<String> validator, String errorMessage){
+    public String getValidatedInput(String prompt, Predicate<String> validator, String errorMessage){
         String input;
         while (true) {
             System.out.print(prompt);

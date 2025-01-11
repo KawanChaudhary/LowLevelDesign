@@ -3,7 +3,6 @@ package ParkingLot.Gates;
 import ParkingLot.CostComputation.CostComputation;
 import ParkingLot.Level.LevelManager;
 import ParkingLot.Ticket.Ticket;
-import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -23,7 +22,7 @@ public class ExitGate {
         System.out.println("Please proceed with the payment: " + finalPrice);
     }
 
-    public void closeTicket(@NotNull Ticket ticket){
+    public void closeTicket(Ticket ticket){
         // Add 2 hours and 20 minutes to the entry time to set the exit time
         LocalDateTime exitTime = LocalDateTime.now().plusHours(2).plusMinutes(20);
         ticket.setExitTime(exitTime);
